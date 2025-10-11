@@ -1,30 +1,51 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-int main()
-{
-    int n, i, arr[50], j, temp;
-    cout<<"Enter the Size (max. 50): ";
-    cin>>n;
-    cout<<"Enter "<<n<<" Numbers: ";
-    for(i=0; i<n; i++)
-        cin>>arr[i];
-    cout<<"\nSorting the Array using Bubble Sort Technique..\n";
-    for(i=0; i<(n-1); i++)
-    {
-        for(j=0; j<(n-i-1); j++)
-        {
-            if(arr[j]>arr[j+1])
-            {
-                temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
-            }
-        }
+
+void bubbleSort(int array[], int size) {
+    
+
+  for (int step = 0; step < (size-1); ++step) {
+      
+    /
+    int swapped = 0;
+  
+    for (int i = 0; i < (size-step-1); ++i) {
+        
+      // compare two array elements
+
+      if (array[i] > array[i + 1]) {
+
+        int temp = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = temp;
+        
+        swapped = 1;
+      }
     }
-    cout<<"\nArray Sorted Successfully!\n";
-    cout<<"\nThe New Array is: \n";
-    for(i=0; i<n; i++)
-        cout<<arr[i]<<" ";
-    cout<<endl;
-    return 0;
+
+    // no swapping means the array is already sorted
+    
+    if (swapped == 0)
+      break;
+  }
+}
+
+// print an array
+void printArray(int array[], int size) {
+  for (int i = 0; i < size; ++i) {
+    cout << "  " << array[i];
+  }
+  cout << "\n";
+}
+
+int main() {
+  int data[] = {-2, 45, 0, 11, -9};
+  
+  // find the array's length
+  int size = sizeof(data) / sizeof(data[0]);
+  
+  bubbleSort(data, size);
+  
+  cout << "Sorted Array in Ascending Order:\n";
+  printArray(data, size);
 }
